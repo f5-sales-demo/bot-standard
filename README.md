@@ -22,7 +22,7 @@ F5 XC standard bot defense
 
 ## Documentation
 
-Full documentation is available at **[https://f5-sales-demo.github.io/bot-standard/](https://f5-sales-demo.github.io/bot-standard/)**.
+Full documentation is available at __[https://f5-sales-demo.github.io/bot-standard/](https://f5-sales-demo.github.io/bot-standard/)__.
 
 ## Contributing
 
