@@ -1,11 +1,45 @@
 ---
-title: Bot Standard
-description: Standard bot defense with signature-based detection for F5 Distributed Cloud.
-hero:
-  tagline: Standard bot defense with signature-based detection.
-  image:
-    html: '<img src="/bot-standard/images/hero.svg" alt="F5 XC Bot Standard" />'
-sidebar:
-  hidden: true
-  order: 0
+title: F5 Distributed Cloud Bot Defense Standard
+description: Signature-based bot detection, search engine verification, scraper mitigation, and automated threat defense.
 ---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+**F5 Distributed Cloud Bot Defense Standard** provides foundational automated threat mitigation at the edge. It inspects incoming client requests against known bot signatures, verifies legitimate search engine web crawlers, and blocks automated scrapers, vulnerability scanners, and malicious bots.
+
+## Classification Flow
+
+```text
++-------------------------------------------------------------------------+
+|                   Standard Bot Classification Pipeline                  |
+|                                                                         |
+|  Incoming Client Request                                                |
+|        |                                                                |
+|        v                                                                |
+|  +-------------------------------------------------------------------+  |
+|  | Signature & User-Agent Verification                               |  |
+|  +---------------------------------+---------------------------------+  |
+|                                    |                                    |
+|         +--------------------------+--------------------------+         |
+|         | Known Good Bot                                      | Unknown |
+|         v                                                     v         |
+|  +-----------------------------+               +---------------------+  |
+|  | Reverse DNS & ASN Lookup:   |               | Malicious Signature |  |
+|  | Verified Googlebot/Bingbot  |               | Matching & Scrapers |  |
+|  +--------------+--------------+               +----------+----------+  |
+|                 | Verified                                | Match       |
+|                 v                                         v             |
+|  +-----------------------------+               +---------------------+  |
+|  | Allow Request to Origin     |               | Mitigate (Block/403)|  |
+|  +-----------------------------+               +---------------------+  |
++-------------------------------------------------------------------------+
+```
+
+## Bot Categories & Actions
+
+| Category | Examples | Default Action | Configurable Override |
+| :--- | :--- | :--- | :--- |
+| **Good Bots** | Googlebot, Bingbot, Applebot, Pingdom | Allow | Rate Limit, Block |
+| **Commercial Bots** | Content aggregators, SEO crawlers | Allow | Block, Redirect |
+| **Malicious Bots** | Vulnerability scanners, scrapers, exploit bots | Block | Custom Challenge |
+| **Untrusted Clients** | Headless curl/python scripts with spoofed headers | Monitor | Block |
